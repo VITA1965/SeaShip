@@ -13,7 +13,8 @@ public class ShipController : MonoBehaviour
 
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] GameObject[] _cannons;
-
+    private int checkpoints = 10;
+    private int currentCheckpointsValue = 0;
   
 
     float currentSpeed;
@@ -102,10 +103,15 @@ public class ShipController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-
+        
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.tag == "CheckPoint")
+        {
+            currentCheckpointsValue++;
+            other.gameObject.SetActive(false);
+            Debug.Log(currentCheckpointsValue);
+        }
     }
 }
